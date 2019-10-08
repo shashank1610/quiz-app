@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import Question from "../question/Question";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/questionPanel";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -13,7 +14,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TextButtons() {
+function Question(props) {
+  console.log("eyenjasd");
   const classes = useStyles();
   const [questionNum, setQuestionNum] = useState();
   let Questions = [];
@@ -28,10 +30,44 @@ export default function TextButtons() {
         });
       })
       .catch(error => {});
-  }, []);
+  }, [props.traversedQuestions]);
   for (let i = 1; i <= questionNum; i++) {
-    Questions.push(<button className={classes.button}>{i}</button>);
+    let buttonStyle = {};
+
+    if (props.traversedQuestions.indexOf(i) >= 0) {
+      buttonStyle = {
+        "background-color": "#008CBA"
+      };
+    }
+
+    Questions.push(
+      <button
+        style={buttonStyle}
+        onClick={() => {
+          props.onQuestionClick(i);
+        }}
+        className={classes.button}
+      >
+        {i}
+      </button>
+    );
   }
-  console.log(Questions);
+
   return <div>{Questions}</div>;
 }
+
+const mapStateToProps = state => {
+  return {
+    traversedQuestions: state.traversedQuestions
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onQuestionClick: id => dispatch(actions.questionTraversal(id))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Question);

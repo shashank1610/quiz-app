@@ -46,4 +46,5 @@ const useStyles = makeStyles(theme => ({
   );
 }
 
-export default Question;
+export default Question
+
