@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Questions from './Questions'
+import Question from './Question'
 const useStyles = makeStyles({
   card: {
     minWidth: 275,
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     marginBottom: 12
   }
 });
-const QuestionPanel = () => {
+const Questions = () => {
   const classes = useStyles();
 
   return (
@@ -33,14 +33,14 @@ const QuestionPanel = () => {
           color="textSecondary"
           gutterBottom
         >
-          Questions
+          Question
         </Typography>
         <Typography variant="body2" component="p">
-        <Questions></Questions>
+        <Question></Question>
         </Typography>
       </CardContent>
     </Card>
   );
 };
 
-export default QuestionPanel;
+export default Questions;

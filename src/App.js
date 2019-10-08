@@ -1,11 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import QuestionPanel from './components/js/QuestionPanel'
+import QuestionsInPanel from './components/questionpanel/Questions';
+import Questions from './components/question/Question'
 function App() {
   return (
     <div className="App">
-      <QuestionPanel />
+      <QuestionsInPanel />
+      <Questions/>
     </div>
   );
 }
