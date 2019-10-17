@@ -1,7 +1,8 @@
 import React from "react";
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
-  traversedQuestions: []
+  traversedQuestions: [],
+  currentQuestion : 1
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -18,6 +19,7 @@ const addToTraversedQuestions = (state, id) => {
     newTravserd.push(id);
   }
   return {
+    ...state,
     traversedQuestions: newTravserd
   };
 };
